@@ -4,7 +4,8 @@
       max-width="360"
     >
       <canvas id="myCanvas"></canvas>
-      <v-btn color="success" dark fab>
+      <img/> 
+      <v-btn @click="capture" color="success" dark fab>
         <v-icon>mdi-domain</v-icon>
       </v-btn>
 
@@ -40,6 +41,17 @@ export default {
 
   props: {
     mediaStream: MediaStream
+  },
+
+  methods: {
+    capture () {
+      const img = this.$el.querySelector("img")
+      const video = this.$el.querySelector("video")
+      const canvas = this.$el.querySelector("canvas")
+
+      img.src = canvas.toDataURL("image/jpeg");
+      this.$el.append(img);
+    }
   },
 
   mounted() {
